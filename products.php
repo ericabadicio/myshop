@@ -163,7 +163,9 @@
 </form>
 <script>
 	$('.cart').on('click', function(event){
-
+		event.preventDefault();
+		var url = 'addtocart.php?id=' + $(this).data('id');
+		location.replace(url);
 
 	});
 </script>
