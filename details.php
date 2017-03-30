@@ -37,6 +37,13 @@
 				$image = $row['image'];
 				$added = $row['addedOn'];
 			}
+
+			if (isset($_POST['add']))
+			{
+				$quantity = $_POST['qty'];
+				header('location: addtocart.php?id='. 
+					$id . '&qty=' . $quantity);
+			}
 		}
 		else
 		{

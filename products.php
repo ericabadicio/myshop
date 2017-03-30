@@ -163,10 +163,14 @@
 </form>
 <script>
 	$('.cart').on('click', function(event){
-		event.preventDefault();
-		var url = 'addtocart.php?id=' + $(this).data('id');
-		location.replace(url);
-
+		//event.preventDefault();
+		//var url = 'addtocart.php?id=' + $(this).data('id');
+		//location.replace(url);
+		var pid = $(this).data('id');
+		$.ajax({
+		  type: "GET",
+		  url: 'addtocart.php?id=' + pid;
+		});
 	});
 </script>
 <?php
