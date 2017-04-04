@@ -22,6 +22,20 @@
 			header('location: products.php');
 		}
 	}
+
+	else if (isset($_REQUEST['did']) && isset($_REQUEST['action']))
+	{
+		if (ctype_digit($_REQUEST['did']))
+		{
+			$detailID = $_REQUEST['did'];
+
+			if ($_REQUEST['action'] == 'delete')
+			{
+				deleteFromCart($con, $detailID);
+			}
+		}
+	}
+
 	else
 	{
 		header('location: products.php');
@@ -58,5 +72,12 @@
 			1, $pid, $price, $qty, $amount)";
 		$result_cart = $con->query($sql_cart) 
 			or die(mysqli_error($con));
+	}
+
+	function deleteFromCart($con, $did)
+	{
+		$sql_delete = "DELETE FROM orders_details
+			WHERE detailID=$did";
+		$con->query($sql_delete) or die(mysqli_error($con));
 	}
 ?>
