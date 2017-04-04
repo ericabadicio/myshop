@@ -11,6 +11,19 @@
 		AND od.userID=1";
 	$result_cart = $con->query($sql_cart) or 
 		die(mysqli_error($con));
+
+	$sql_total = "SELECT SUM(amount) FROM
+	orders_details WHERE orderNo=0
+	AND userID=1 HAVING COUNT(detailID) > 0";
+
+	$result_total = $con->query($sql_total);
+	$total = mysqli_num_rows($result_total) > 0 ?
+		mysqli_fetch_object($result_total)->price : 0;
+
+	$gross = $total * .88;
+	$vat = $total * .12;
+	$delivery = $total * .05;
+	$total = $total * 1.05;
 ?>
 
 <form class="form-horizontal" method="POST">
