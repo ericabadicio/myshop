@@ -134,7 +134,7 @@
 										<small>$cat</small><br/>
 										P$price
 										<hr/>
-										<button name='addtocart' class='cart btn btn-success btn-block' data-id='$pid'>
+										<button name='addtocart' class='cart btn btn-success btn-block' type='submit' data-id='$pid'>
 											<i class='fa fa-plus'></i> Add to Cart
 										</button>
 									</div>
@@ -161,16 +161,11 @@
 		?>
 	</div>
 </form>
-<script>
++<script>
 	$('.cart').on('click', function(event){
-		//event.preventDefault();
-		//var url = 'addtocart.php?id=' + $(this).data('id');
-		//location.replace(url);
-		var pid = $(this).data('id');
-		$.ajax({
-		  type: "GET",
-		  url: 'addtocart.php?id=' + pid;
-		});
+		event.preventDefault();
+		var url = 'addtocart.php?id=' + $(this).data('id');
+		location.replace(url);
 	});
 </script>
 <?php
