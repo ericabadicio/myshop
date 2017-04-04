@@ -143,6 +143,20 @@
 		event.preventDefault();
 		location.reload();
 	});
+
+	$('.update').on('click', function(event){
+		var did = $(this).data('did');
+		var qty = $('.cart').value;
+		var URL = '../addtocart.php?did=' + did + 
+			'&action=update&qty=' + qty;
+
+		$.ajax({
+		  type: "GET",
+		  url: URL
+		});
+		event.preventDefault();
+		location.reload();
+	});
 </script>
 <?php
 	include_once('../includes/footer.php');
